@@ -26,7 +26,7 @@ let residencias = [
 
 let ultimoId = 4;
 
-const modelo = (id) => {
+const modelo = (id = ultimoId++) => {
     const bairro = prompt('Qual o bairro da residência: ');
     const rua = prompt('Qual a rua da residência: ');
     const numero = prompt('Qual o número da residência: ');
@@ -43,17 +43,16 @@ const modelo = (id) => {
     };  
 
     if (bairro.length >= 3 && rua.length >= 3 && numero.length >= 1 && moradores.length >= 1){
-        let residencia
+       
         if(id === undefined){
-            residencia = {bairro, rua, numero, moradores, id:ultimoId}
-            ultimoId++;
+            return {bairro, rua, numero, moradores, id:ultimoId}
         }
         else{
-            residencia = {bairro, rua, numero, moradores, id}
+           return {bairro, rua, numero, moradores, id}
         }
-        return residencia
     } else {
         console.log('Dados inválidos.')
+        ultimoId--;
     }
 };
 
@@ -84,11 +83,6 @@ const atualizarResidencia = () => {
     const id = parseInt(prompt('Qual id de residência deseja alterar: '));
 
     let novo = modelo(id)
-
-    if (novo === undefined) {
-        console.log('Atualização cancelada devido a dados inválidos.');
-        return;
-    }
 
     const indice = residencias.findIndex(residencia => id == residencia.id);
 
