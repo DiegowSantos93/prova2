@@ -50,10 +50,9 @@ const modelo = (id = ultimoId++) => {
         else{
            return {bairro, rua, numero, moradores, id}
         }
-    } else {
-        console.log('Dados inválidos.')
-        ultimoId--;
-    }
+    } 
+    console.log('Dados inválidos.')
+    ultimoId--;
 };
 
 const adicionarResidencia = () => {
@@ -84,14 +83,19 @@ const atualizarResidencia = () => {
 
     let novo = modelo(id)
 
-    const indice = residencias.findIndex(residencia => id == residencia.id);
-
-    if (indice != -1){
-        residencias[indice] = novo
-        console.log('Residência alterada.')
-    } else {
-        console.log('Residência não localizada.')
-    }
+    if (novo != undefined){
+        const indice = residencias.findIndex(residencia => id == residencia.id);
+    
+        if (indice != -1){
+            residencias[indice] = novo
+            console.log('Residência alterada.')
+        } else {
+            console.log('Residência não localizada.')
+        }
+    } 
+    // else {
+    //     console.log('Dados inválidos.')
+    // }
 };
 
 const removerResidencia = () => {
