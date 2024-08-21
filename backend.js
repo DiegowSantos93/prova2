@@ -81,9 +81,14 @@ function listarResidencias() {
 const atualizarResidencia = () => {
     listarResidencias();
 
-    const id = prompt('Qual id de residência deseja alterar: ');
+    const id = parseInt(prompt('Qual id de residência deseja alterar: '));
 
     let novo = modelo(id)
+
+    if (novo === undefined) {
+        console.log('Atualização cancelada devido a dados inválidos.');
+        return;
+    }
 
     const indice = residencias.findIndex(residencia => id == residencia.id);
 
@@ -98,7 +103,7 @@ const atualizarResidencia = () => {
 const removerResidencia = () => {
     listarResidencias();
 
-    const id = prompt('Qual id de residência deseja remover: ');
+    const id = parseInt(prompt('Qual id de residência deseja remover: '));
     
     const indice = residencias.findIndex(residencia => id == residencia.id);
 
